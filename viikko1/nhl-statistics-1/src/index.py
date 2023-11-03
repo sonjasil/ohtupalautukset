@@ -7,7 +7,7 @@ def main():
 )
 
     philadelphia_flyers_players = stats.team("PHI")
-    top_scorers = stats.top(10)
+    top_scorers = stats.top(10, "points")
 
     print("Philadelphia Flyers:")
     for player in philadelphia_flyers_players:
@@ -15,6 +15,14 @@ def main():
 
     print("Top point getters:")
     for player in top_scorers:
+        print(player)
+
+    print("Top point goal scorers:")
+    for player in stats.top(10, "points"):
+        print(player)
+
+    print("Top by assists:")
+    for player in stats.top(10, "assists"):
         print(player)
 
 

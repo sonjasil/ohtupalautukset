@@ -32,6 +32,16 @@ class TestStatisticsService(unittest.TestCase):
         self.assertAlmostEqual(result, ["Semenko", "Kurri", "Gretzky"])
 
     def test_top_search(self):
-        result = self.stats.top(1)
+        result = self.stats.top(1, "points")
 
         self.assertAlmostEqual(result[0].name, "Gretzky")
+
+    def test_top_assists(self):
+        result = self.stats.top(1, "assists")
+
+        self.assertAlmostEqual(result[0].name, "Gretzky")
+
+    def test_top_goals(self):
+        result = self.stats.top(1, "goals")
+
+        self.assertAlmostEqual(result[0].name, "Lemieux")
