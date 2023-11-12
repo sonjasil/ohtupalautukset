@@ -9,13 +9,16 @@ class Project:
 
     def _stringify_dependencies(self, dependencies):
         return ", ".join(dependencies) if len(dependencies) > 0 else "-"
+    
+    def _make_list(self, given_list):
+        return "\n- ".join(given_list)
 
     def __str__(self):
         return (
             f"Name: {self.name}"
             f"\nDescription: {self.description or '-'}"
-            f"\nLicence: {self.license}"
-            f"\nAuthors: {self._stringify_dependencies(self.authors)}"
-            f"\nDependencies: {self._stringify_dependencies(self.dependencies)}"
-            f"\nDevelopment dependencies: {self._stringify_dependencies(self.dev_dependencies)}"
+            f"\nLicence: {self.license}\n"
+            f"\nAuthors:\n- {self._make_list(self.authors)}\n"
+            f"\nDependencies:\n- {self._make_list(self.dependencies)}\n"
+            f"\nDevelopment dependencies:\n- {self._make_list(self.dev_dependencies)}"
         )
