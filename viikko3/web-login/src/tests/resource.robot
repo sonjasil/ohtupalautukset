@@ -10,6 +10,7 @@ ${LOGIN_URL}  http://${SERVER}/login
 ${REGISTER_URL}  http://${SERVER}/register
 ${STARTING_URL}  http://${SERVER}/
 ${WELCOME_URL}  http://${SERVER}/welcome
+${MAIN_URL}  http://${SERVER}/ohtu
 
 *** Keywords ***
 Open And Configure Browser
@@ -42,3 +43,6 @@ Go To Starting Page
 
 Go To Register Page
     Go To  ${REGISTER_URL}
+
+Go To Main Page
+    Go To  ${MAIN_URL}
