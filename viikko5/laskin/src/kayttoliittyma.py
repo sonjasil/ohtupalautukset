@@ -1,6 +1,6 @@
 from enum import Enum
 from tkinter import ttk, constants, StringVar
-from komennot import Summa, Erotus, Nollaus, Kumoa
+from komennot import Summa, Erotus, Nollaus
 
 
 class Komento(Enum):
@@ -14,12 +14,12 @@ class Kayttoliittyma:
     def __init__(self, sovelluslogiikka, root):
         self._sovelluslogiikka = sovelluslogiikka
         self._root = root
+        self._edellinen_komento = None
 
         self._komennot = {
             Komento.SUMMA: Summa(sovelluslogiikka, self._lue_syote),
             Komento.EROTUS: Erotus(sovelluslogiikka, self._lue_syote),
             Komento.NOLLAUS: Nollaus(sovelluslogiikka, self._lue_syote),
-            #Komento.KUMOA: Kumoa(sovelluslogiikka, self._lue_syote) # ei ehkä tarvita täällä...
         }
 
 
@@ -71,8 +71,12 @@ class Kayttoliittyma:
 
 
     def _suorita_komento(self, komento):
-        komento_olio = self._komennot[komento]
-        komento_olio.suorita()
+        if komento == Komento.KUMOA:
+            self._edellinen_komento.kumoa()
+        else:
+            komento_olio = self._komennot[komento]
+            komento_olio.suorita()
+            self._edellinen_komento = komento_olio
         self._kumoa_painike["state"] = constants.NORMAL
 
         if self._sovelluslogiikka.arvo() == 0:
